@@ -265,13 +265,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 			let sound = SKAction.playSoundFileNamed("coin.wav", waitForCompletion: false)
 			runAction(sound)
 
-			++score
+			score += 1
 
 			return
 		}
 
 		if contact.bodyA.node == player || contact.bodyB.node == player {
-			if let explosion = SKEmitterNode(fileNamed: "PlayerExplosion.sks") {
+			if let explosion = SKEmitterNode(fileNamed: "PlayerExplosion") {
 				explosion.position = player.position
 				addChild(explosion)
 			}

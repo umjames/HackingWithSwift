@@ -151,7 +151,7 @@ class GameScene: SKScene {
 		for node in nodes {
 			if node.name == "enemy" {
 				// 1
-				let emitter = SKEmitterNode(fileNamed: "sliceHitEnemy.sks")!
+				let emitter = SKEmitterNode(fileNamed: "sliceHitEnemy")!
 				emitter.position = node.position
 				addChild(emitter)
 
@@ -171,7 +171,7 @@ class GameScene: SKScene {
 				node.runAction(seq)
 
 				// 6
-				++score
+				score += 1
 
 				// 7
 				let index = activeEnemies.indexOf(node as! SKSpriteNode)!
@@ -180,7 +180,7 @@ class GameScene: SKScene {
 				// 8
 				runAction(SKAction.playSoundFileNamed("whack.caf", waitForCompletion: false))
 			} else if node.name == "bomb" {
-				let emitter = SKEmitterNode(fileNamed: "sliceHitBomb.sks")!
+				let emitter = SKEmitterNode(fileNamed: "sliceHitBomb")!
 				emitter.position = node.parent!.position
 				addChild(emitter)
 
@@ -232,7 +232,7 @@ class GameScene: SKScene {
 		let path = UIBezierPath()
 		path.moveToPoint(activeSlicePoints[0])
 
-		for var i = 1; i < activeSlicePoints.count; ++i {
+		for i in 1 ..< activeSlicePoints.count {
 			path.addLineToPoint(activeSlicePoints[i])
 		}
 
@@ -246,7 +246,7 @@ class GameScene: SKScene {
 
 		for node in activeEnemies {
 			if node.name == "bombContainer" {
-				++bombCount
+				bombCount += 1
 				break
 			}
 		}
@@ -343,7 +343,7 @@ class GameScene: SKScene {
 			sound.play()
 
 			// 5
-			let emitter = SKEmitterNode(fileNamed: "sliceFuse.sks")!
+			let emitter = SKEmitterNode(fileNamed: "sliceFuse")!
 			emitter.position = CGPoint(x: 76, y: 64)
 			enemy.addChild(emitter)
 		} else {
@@ -435,13 +435,13 @@ class GameScene: SKScene {
 		}
 
 
-		++sequencePosition
+		sequencePosition += 1
 
 		nextSequenceQueued = false
 	}
 
 	func subtractLife() {
-		--lives
+		lives -= 1
 
 		runAction(SKAction.playSoundFileNamed("wrong.caf", waitForCompletion: false))
 
